@@ -59,7 +59,7 @@ class Admin extends Authenticatable implements CanResetPassword
 
     public function city()
     {
-        return $this->belongsTo('App\Models\City');
+        return $this->belongsTo(config('appModel.cityModel'));
     }
 
     public function getFullNameAttribute()
@@ -81,17 +81,17 @@ class Admin extends Authenticatable implements CanResetPassword
     public function products()
     {
 
-        return $this->hasMany('App\Models\Product');
+        return $this->hasMany(config('appModel.productModel'));
     }
 
     public function leads()
     {
-        return $this->hasMany('App\Models\Lead');
+        return $this->hasMany(config('appModel.leadModel'));
     }
 
     public function commands()
     {
-        return $this->hasMany('App\Models\Command')
+        return $this->hasMany(config('appModel.commandModel'))
             ->where('admin_id', $this->id)
             ->orWhere('admin_id', null);
     }
@@ -99,6 +99,6 @@ class Admin extends Authenticatable implements CanResetPassword
     public function treasuries()
     {
 
-        return $this->hasMany('App\Models\Treasury');
+        return $this->hasMany(config('appModel.treasuryModel'));
     }
 }

@@ -35,7 +35,7 @@ class LeadRequest extends FormRequest
             [
                 'nom' => 'required|string',
                 'prenom' => 'required|string',
-                'tele' => ['required', 'numeric', Rule::unique('leads')->ignore($this->leadId)],
+                'tele' => ['required', 'string', Rule::unique('leads')->ignore($this->leadId)],
                 'email' => ['nullable', 'email', Rule::unique('leads')->ignore($this->leadId)],
                 'ville' => 'required|string',
                 'address' => 'required|string',
@@ -47,7 +47,7 @@ class LeadRequest extends FormRequest
                 'email' => 'nullable|email',
                 'ville' => 'required|string',
                 'address' => 'required|string',
-                'tele' => 'required|numeric',
+                'tele' => 'required|string',
                 'produit' => 'required|string',
                 'group_id' => 'nullable|integer',
                // 'addedby'=>'nullable|string',

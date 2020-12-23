@@ -6,7 +6,7 @@
           
                     @include('theme_a.settings._normal.__section._sec_a')
                     @include('theme_a.settings._normal.__section._sec_b')
-                    {{--@include('theme_a.settings._normal.__section._sec_c')--}}
+                    @include('theme_a.settings._normal.__section._sec_c')
                     @include('theme_a.settings._normal.__section._sec_d')
                     @include('theme_a.settings._normal.__section._sec_e')
                     @include('theme_a.settings._normal.__section._sec_f')

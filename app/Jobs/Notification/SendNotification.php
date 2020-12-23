@@ -19,6 +19,7 @@ class SendNotification implements ShouldQueue
      * @return void
      */
     protected $abstract;
+    
     protected $model;
 
     public function __construct($abstract, $model)
@@ -34,9 +35,7 @@ class SendNotification implements ShouldQueue
      */
     public function handle()
     {
-        if (loadSetting('Notifications')->email_to_send !== null) {
-            Mail::to(loadSetting('Notifications')->email_to_send)->send($this->callEmail());
-        }
+      $this->sendEmail();
     }
 
     private function callEmail()
@@ -44,5 +43,12 @@ class SendNotification implements ShouldQueue
         $mail = "App\\Mail\\Notification\\"  . 'New' . $this->abstract; // newAdmin or NewLead founded in Mail/Notification/
 
         return  new $mail($this->model);
+    }
+
+    private function sendEmail()
+    {
+        if (loadSetting('Notifications')->email_to_send !== null) {
+            Mail::to(loadSetting('Notifications')->email_to_send)->send($this->callEmail());
+        }
     }
 }

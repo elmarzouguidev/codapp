@@ -41,12 +41,12 @@ class Lead extends Model
     ];
     public function group()
     {
-        return $this->belongsTo('App\Models\Group');
+        return $this->belongsTo(config('appModel.groupModel'));
     }
 
     public function moderator()
     {
-        return $this->belongsTo('App\Models\Moderator');
+        return $this->belongsTo(config('appModel.moderatorModel'));
     }
 
     public function getFullNameAttribute()

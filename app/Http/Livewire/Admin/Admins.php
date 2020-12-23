@@ -27,7 +27,7 @@ class Admins extends Component
         'tele' => '',
         'role' => null,
     ];
-
+    public $selected = []; //when user click to checkbox
     /**
      * @param AdminService $adminService
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -50,8 +50,7 @@ class Admins extends Component
     public function mount(
         CityService $city,
         RoleService $roles
-    )
-    {
+    ) {
 
         $this->villes = $city->getInstance()->getSelect(['id', 'name']);
         $this->roles = $roles->getInstance()->Select(['id', 'name'])->get();
@@ -63,6 +62,7 @@ class Admins extends Component
      */
     public function submit(AdminService $newAdmin)
     {
+        
         $admin = $newAdmin->execute('create', $this->fields);
 
         if ($admin) {
@@ -152,7 +152,6 @@ class Admins extends Component
     private function resetInput()
     {
         $this->fields = null;
-
     }
 
     /**

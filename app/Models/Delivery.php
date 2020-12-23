@@ -21,10 +21,10 @@ class Delivery extends Authenticatable
      */
     protected $fillable = [
         'nom',
-        'prenom' ,
-        'email' ,
-        'password' ,
-        'city_id' ,
+        'prenom',
+        'email',
+        'password',
+        'city_id',
         'address',
         'tele'
     ];
@@ -64,12 +64,13 @@ class Delivery extends Authenticatable
 
     public function ville()
     {
-        return $this->belongsTo('App\Models\City', 'city_id');
+        return $this->belongsTo(config('appModel.cityModel'), 'city_id');
     }
 
-    public function commands(){
+    public function commands()
+    {
 
-        return $this->hasMany('App\Models\Command');
+        return $this->hasMany(config('appModel.commandModel'));
     }
 
 
@@ -85,5 +86,4 @@ class Delivery extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($value);
     }
-
 }

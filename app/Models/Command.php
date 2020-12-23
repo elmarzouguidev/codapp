@@ -35,25 +35,25 @@ class Command extends Model
     public function lead()
     {
 
-        return $this->belongsTo('App\Models\Lead');
+        return $this->belongsTo(config('appModel.leadModel'));
     }
 
     public function product()
     {
-        return $this->belongsTo('App\Models\Product');
+        return $this->belongsTo(config('appModel.productModel'));
     }
 
     public function moderator()
     {
-        return $this->belongsTo('App\Models\Moderator');
+        return $this->belongsTo(config('appModel.moderatorModel'));
     }
     public function admin()
     {
-        return $this->belongsTo('App\Models\Admin');
+        return $this->belongsTo(config('appModel.adminModel'));
     }
     public function delivery()
     {
-        return $this->belongsTo('App\Delivery');
+        return $this->belongsTo(config('appModel.deliveryModel'));
     }
 
 

@@ -66,13 +66,13 @@ class Moderator extends Authenticatable
 
     public function ville()
     {
-        return $this->belongsTo('App\Models\City', 'city_id');
+        return $this->belongsTo(config('appModel.cityModel'), 'city_id');
     }
 
 
     public function leads()
     {
-        return $this->hasMany('App\Models\Lead')->where('moderator_id', $this->id);
+        return $this->hasMany(config('appModel.leadModel'))->where('moderator_id', $this->id);
     }
 
     public function getFullNameAttribute()
@@ -85,18 +85,19 @@ class Moderator extends Authenticatable
         $this->attributes['password'] = Hash::make($value);
     }
 
-    public function products(){
+    public function products()
+    {
 
-        return $this->hasMany('App\Models\Product');
+        return $this->hasMany(config('appModel.productModel'));
     }
 
-    public function commands(){
-        return $this->hasMany('App\Models\Command')
-            ->where('moderator_id',$this->id)
-        ;
+    public function commands()
+    {
+        return $this->hasMany(config('appModel.commandModel'))
+            ->where('moderator_id', $this->id);
     }
 
-   /* private function getAuthAdmin(){
+    /* private function getAuthAdmin(){
       return Auth::user()->fullname;
     }*/
 

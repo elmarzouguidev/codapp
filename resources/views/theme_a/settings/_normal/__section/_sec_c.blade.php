@@ -13,6 +13,7 @@
         </div>
         <div class="card-body">
             <ul class="list-group mb-3 tp-setting">
+                
                 <li class="list-group-item">
                     Anyone seeing my profile page
                     <div class="float-right">
@@ -22,33 +23,7 @@
                         </label>
                     </div>
                 </li>
-                <li class="list-group-item">
-                    Anyone send me a message
-                    <div class="float-right">
-                        <label class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" />
-                            <span class="custom-control-label">&nbsp;</span>
-                        </label>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    Anyone posts a comment on my post
-                    <div class="float-right">
-                        <label class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" />
-                            <span class="custom-control-label">&nbsp;</span>
-                        </label>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    Anyone invite me to group
-                    <div class="float-right">
-                        <label class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" checked='' />
-                            <span class="custom-control-label">&nbsp;</span>
-                        </label>
-                    </div>
-                </li>
+
             </ul>
             <div class="table-responsive">
                 <table class="table table-striped mb-0">

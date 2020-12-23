@@ -74,7 +74,7 @@
                                 <div class="col-lg-3 col-md-12">
                                     <div class="form-group">
                                         <label class="form-label">{{__('forms.tele')}}</label>
-                                        <input type="number" wire:model.defer="fields.tele" name="tele" class="form-control @error('tele') is-invalid @enderror" placeholder="{{__('forms.tele')}}">
+                                        <input type="tel" wire:model.defer="fields.tele" name="tele" class="form-control @error('tele') is-invalid @enderror" placeholder="{{__('forms.tele')}}">
                                         @error('tele')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

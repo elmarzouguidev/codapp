@@ -15,7 +15,7 @@ class City extends Model
 
     public function admins()
     {
-        return $this->hasMany('App\Models\Admin');
+        return $this->hasMany(config('appModel.adminModel'));
     }
 
     public function setNameAttribute($value)

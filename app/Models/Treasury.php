@@ -24,13 +24,15 @@ class Treasury extends Model
     ];
 
 
-    public function admin(){
+    public function admin()
+    {
 
-        return $this->belongsTo('App\Models\Admin');
+        return $this->belongsTo(config('appModel.adminModel'));
     }
 
-    public function delivery(){
+    public function delivery()
+    {
 
-        return $this->belongsTo('App\Models\Delivery');
+        return $this->belongsTo(config('appModel.deliveryModel'));
     }
 }

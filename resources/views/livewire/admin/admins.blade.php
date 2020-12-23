@@ -22,9 +22,9 @@
                         <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
                         <div class="item-action dropdown ml-2">
                             <a href="javascript:void(0)" data-toggle="dropdown"><i class="fe fe-more-vertical"></i></a>
-                            <div class="dropdown-menu dropdown-menu-right">
+                            {{--<div class="dropdown-menu dropdown-menu-right">
 
-                                {{--<a wire:click="moveTo('group')" href="javascript:void(0)" class="dropdown-item">
+                                <a wire:click="moveTo('group')" href="javascript:void(0)" class="dropdown-item">
                                     <i class="dropdown-icon fa fa-copy"></i>
                                     {{ __('productData.product.export.group') }}
                                 </a>
@@ -32,9 +32,9 @@
                                 <a wire:click="moveTo('moderator')" href="javascript:void(0)" class="dropdown-item">
                                     <i class="dropdown-icon fa fa-user"></i>
                                     {{ __('productData.product.export.moderator') }}
-                                </a>--}}
+                                </a>
 
-                            </div>
+                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                             <thead>
 
                             <tr>
-                                <th class="w30">&nbsp;</th>
+                                {{--<th class="w30">&nbsp;</th>--}}
                                 <th>{{__('tables.fullname')}}</th>
                                 <th>{{__('tables.city')}}</th>
                                 {{--<th>{{__('tables.address')}}</th>--}}
@@ -60,14 +60,14 @@
 
                             @foreach($users as $user)
                                 <tr>
-                                    <td class="width45" id="selectCommand">
+                                    {{--<td class="width45" id="selectCommand">
                                         <label class="custom-control custom-checkbox mb-0">
                                             <input wire:model.defer="selected" type="checkbox"
                                                    class="custom-control-input" name="selected[]"
                                                    value="{{ $user->id }}">
                                             <span class="custom-control-label">&nbsp;</span>
                                         </label>
-                                    </td>
+                                    </td>--}}
 
                                     <td><span>{{$user->fullname}}</span></td>
                                     <td><span>{{$user->city->name}}</span></td>

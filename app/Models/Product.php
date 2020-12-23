@@ -41,23 +41,23 @@ class Product extends Model implements HasMedia
     ];
     public function category()
     {
-        return $this->belongsTo('App\Models\Category')->where('type', 'products');
+        return $this->belongsTo(config('appModel.categoryModel'))->where('type', 'products');
     }
 
     public function moderator()
     {
-        return $this->belongsTo('App\Models\Moderator', 'moderator_id');
+        return $this->belongsTo(config('appModel.moderatorModel'), 'moderator_id');
     }
 
     public function admin()
     {
-        return $this->belongsTo('App\Models\Admin', 'admin_id');
+        return $this->belongsTo(config('appModel.adminModel'), 'admin_id');
     }
 
     public function commands()
     {
 
-        return $this->hasMany('App\Models\Command');
+        return $this->hasMany(config('appmodel.adminModel'));
     }
 
 

@@ -23,17 +23,18 @@ class Group extends Model
     }
     public function admin()
     {
-        return $this->belongsTo('App\Models\Admin', 'admin_id');
+        return $this->belongsTo(config('appModel.adminModel'), 'admin_id');
     }
 
-    public function moderator(){
+    public function moderator()
+    {
 
-        return $this->belongsTo('App\Models\Moderator', 'moderator_id');
+        return $this->belongsTo(config('appModel.moderatorModel'), 'moderator_id');
     }
 
     public function leads()
     {
-        return $this->hasMany('App\Models\Lead');
+        return $this->hasMany(config('appModel.leadModel'));
     }
 
     public function getRouteKeyName()
