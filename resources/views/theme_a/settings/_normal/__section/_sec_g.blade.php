@@ -1,7 +1,7 @@
-<div class="tab-pane" id="Change_Password">
+<div class="tab-pane" id="Hooks_settings">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Change Password</h3>
+            <h3 class="card-title">Hooks Settings</h3>
             <div class="card-options">
                 <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i
                         class="fe fe-chevron-up"></i></a>
@@ -11,44 +11,74 @@
                         class="fe fe-x"></i></a>
             </div>
         </div>
+    
         <div class="card-body">
-            <div class="row clearfix">
-                <div class="col-lg-4 col-md-12">
-                    <div class="form-group">
-                        <input type="text" class="form-control" value="louispierce" disabled=""
-                            placeholder="Username">
+            <form action="{{route('admin.settingsPost')}}" method="post">
+                @csrf
+                <input type="hidden" name="hooks_setting" value="1">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Platfome name</label>
+                            <input name="name" value="{{$hooks->name}}" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Header signature(for devlopper)</label>
+                            <input name="header" value="{{$hooks->header}}" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Secret Code</label>
+                            <input name="secret" class="form-control" value="{{$hooks->secret}}" type="text">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Domain name</label>
+                            <input name="domain" class="form-control" value="{{$hooks->domain}}" type="text">
+                        </div>
+                    </div>
+                    {{--<div class="col-sm-6">
+                        <div class="form-group">
+                            <label>link to Hook</label>
+                            <input name="route" class="form-control" value="{{$hooks->route}}" type="text">
+                        </div>
+                    </div>--}}
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>Validated</label>
+                            <div class="float-left">
+                                <label class="custom-control custom-checkbox">
+                                    <input  name="validated" type="checkbox" class="custom-control-input"
+                                    {{$hooks->validated ?'checked':''}} 
+                                     />
+                                    <span class="custom-control-label">&nbsp;</span>
+                                </label>
+                            </div>
+                        </div>
+             
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Active</label>
+                            <div class="float-left">
+                                <label class="custom-control custom-checkbox">
+                                    <input  name="active" type="checkbox" class="custom-control-input"
+                                    {{$hooks->active ?'checked':''}} 
+                                     />
+                                    <span class="custom-control-label">&nbsp;</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 m-t-20 text-right">
+                        <button type="submit" class="btn btn-primary">SAVE</button>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12">
-                    <div class="form-group">
-                        <input type="email" class="form-control" value="louis.info@yourdomain.com"
-                            placeholder="Email">
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Phone Number">
-                    </div>
-                </div>
-                <div class="col-lg-12 col-md-12">
-                    <hr>
-                    <h6>Change Password</h6>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Current Password">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="New Password">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control"
-                            placeholder="Confirm New Password">
-                    </div>
-                </div>
-                <div class="col-sm-12 m-t-20 text-right">
-                    <button type="button" class="btn btn-primary">SAVE</button> &nbsp;
-                    <button type="button" class="btn btn-default">CANCEL</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

@@ -57,7 +57,7 @@ class Product extends Model implements HasMedia
     public function commands()
     {
 
-        return $this->hasMany(config('appmodel.adminModel'));
+        return $this->hasMany(config('appModel.commandModel'));
     }
 
 

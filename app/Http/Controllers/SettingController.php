@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Settings\EmailsSettings;
 use App\Settings\GeneralSettings;
+use App\Settings\HooksSettings;
 use App\Settings\InvoiceSettings;
 use App\Settings\LocalisationSettings;
 use App\Settings\NotificationsSettings;
 use App\Settings\Repositories\EmailsRepository;
 use App\Settings\Repositories\GeneralRepository;
+use App\Settings\Repositories\HooksRepository;
 use App\Settings\Repositories\InvoiceRepository;
 use App\Settings\Repositories\LocalisationRepository;
 use App\Settings\Repositories\NotificationRepository;
@@ -27,7 +29,8 @@ class SettingController extends Controller
         LocalisationSettings $localisations,
         EmailsSettings $emails,
         InvoiceSettings $invoice,
-        NotificationsSettings $notifications
+        NotificationsSettings $notifications,
+        HooksSettings $hooks
 
     ) {
 
@@ -36,7 +39,8 @@ class SettingController extends Controller
             'localisations' => $localisations,
             'emails' => $emails,
             'invoice' => $invoice,
-            'notifications' => $notifications
+            'notifications' => $notifications,
+            'hooks' => $hooks
         ]);
     }
 
@@ -75,6 +79,12 @@ class SettingController extends Controller
         if ($request->has('notification_setting') && $request->filled('notification_setting')) {
 
             app(NotificationRepository::class);
+            return redirect()->back();
+        }
+
+        if ($request->has('hooks_setting') && $request->filled('hooks_setting')) {
+
+            app(HooksRepository::class);
             return redirect()->back();
         }
     }

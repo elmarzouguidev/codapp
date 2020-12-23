@@ -1,4 +1,4 @@
-<script>
+{{--<script>
     /*Echo.channel('events')
         .listen('RealTimeMessage', (e) => console.log('RealTimeMessage: ' + e.message));*/
 
@@ -14,7 +14,7 @@
         });
    /* Echo.private('events')
         .listen('RealTimeMessage', (e) => console.log('Private RealTimeMessage: ' + e.message));*/
-</script>
+</script>--}}
 
 <script>
     window.addEventListener('attachedToAction', event => {

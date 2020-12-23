@@ -18,8 +18,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::webhooks('webhooks');
-
 Route::post('/hooker',[TestController::class,'postHook']);
 Route::get('/te',function(){
    // return app(App\Settings\GeneralSettings::class)->hookCSRF;

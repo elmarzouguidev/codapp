@@ -10,7 +10,8 @@ return [
         App\Settings\LocalisationSettings::class,
         App\Settings\EmailsSettings::class,
         App\Settings\InvoiceSettings::class,
-        App\Settings\NotificationsSettings::class
+        App\Settings\NotificationsSettings::class,
+        App\Settings\HooksSettings::class
     ],
 
     /*

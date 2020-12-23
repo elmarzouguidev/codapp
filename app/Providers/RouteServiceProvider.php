@@ -66,6 +66,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->as('delivery.')
                 ->group(base_path('routes/deliveryRoutes.php'));
+
+            Route::middleware('web')
+                ->group(base_path('routes/hooksRoutes.php'));
         });
     }
 

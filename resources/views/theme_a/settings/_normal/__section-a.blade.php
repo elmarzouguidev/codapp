@@ -10,7 +10,9 @@
                         <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#Email_Settings">Email</a></li>
                         <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#Invoice_Settings">Invoice</a></li>
                         <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#Notifications">Notifications </a></li>
-                        <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#Change_Password">Change Password </a></li>
+                        <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#Hooks_settings">Hooks</a></li>
+                        {{--<li class="nav-item"><a class="nav-link " data-toggle="tab" href="#Change_Password">Change Password </a></li>--}}
+                        
                     </ul>
                 </div>
             </div>
