@@ -13,25 +13,31 @@ namespace App\Settings\Repositories;
 
 use App\Http\Requests\Settings\Hooks\HooksRequest;
 
-use App\Settings\HooksSettings;
+use App\Settings\WebHooksSettings;
+
 use Illuminate\Support\Str;
 
-class HooksRepository
+class WebHooksRepository
 {
 
     const SEPARATOR = '-';
+
     const SLASH = '/';
 
-    public function __construct(HooksSettings $settings, HooksRequest $request)
+    const PREFIX = 'appwebhook';
+
+    public function __construct(WebHooksSettings $settings, HooksRequest $request)
     {
 
-        $platform = $settings->platform;
+        $platform = $settings->app_platform;
         // $settings->name = $request->input('name');
         $settings->header = $request->input('header');
         $settings->secret = $request->input('secret');
         $settings->domain = $request->input('domain');
         if ($platform !== $request->input('platform')) {
-            $settings->platform = $request->input('platform');
+
+            $settings->app_platform = $request->input('platform');
+
             $settings->route = $this->generateRoutes($request->platform);
         }
 
@@ -42,8 +48,6 @@ class HooksRepository
 
     public function generateRoutes($name)
     {
-        return  'hooker/'.Str::slug($name) . self::SEPARATOR . Str::uuid();
-        // return Str::slug($name) .Str::random(40);
-
+        return  self::PREFIX . self::SLASH . Str::slug($name) . self::SEPARATOR . Str::uuid();
     }
 }

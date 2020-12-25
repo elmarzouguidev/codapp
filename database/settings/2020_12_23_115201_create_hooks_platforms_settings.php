@@ -6,7 +6,7 @@ class CreateHooksPlatformsSettings extends SettingsMigration
 {
     public function up(): void
     {
-        $this->migrator->add('hooks.platform', 'shopify');
+        $this->migrator->add('hooks.app_platform', 'shopify');
         $this->migrator->add('hooks.name', 'shopify');
         $this->migrator->add('hooks.header', 'X-Shopify-Hmac-Sha256');
         $this->migrator->add('hooks.secret', 'haymacproduction');

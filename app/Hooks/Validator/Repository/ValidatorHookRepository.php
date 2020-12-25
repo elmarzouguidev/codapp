@@ -40,6 +40,7 @@ class ValidatorHookRepository implements SignatureValidator, ValidatorHookInterf
 
         if ($this->state) {
             logger($request->header());
+            logger($request->all());
             return true;
         } else {
             logger('Ouii  is here in False');

@@ -10,11 +10,13 @@
  **/
 
 return [
-    
+
     'shopify',
     'woocommerce',
     'elementor',
     'clickFunnels',
-    'ebay'
+    'ebay',
+    /***** */
+  //  'selected' => loadSetting('Hooks')->platform
 
 ];

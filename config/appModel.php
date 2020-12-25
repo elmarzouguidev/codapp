@@ -37,6 +37,6 @@ return [
 
     'userModel' => App\Models\User::class,
 
-    'treasuryModel' => App\Models\Treasury::class
+    'treasuryModel' => App\Models\Treasury::class,
 
 ];

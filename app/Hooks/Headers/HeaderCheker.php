@@ -19,7 +19,7 @@ class HeaderCheker  implements HeaderChekerInterface
 
     public function __construct()
     {
-        $this->setHeader('elementor-signature');
+       // $this->setHeader(loadSetting('Hooks')->app_platform);
     }
 
     /**

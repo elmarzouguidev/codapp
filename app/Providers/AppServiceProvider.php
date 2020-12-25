@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Hooks\Headers\HeaderCheker;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 
@@ -32,6 +33,5 @@ class AppServiceProvider extends ServiceProvider
             // $query->bindings
             // $query->time
         });*/
-   
     }
 }

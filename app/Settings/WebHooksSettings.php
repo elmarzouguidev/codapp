@@ -13,12 +13,12 @@ namespace App\Settings;
 
 use Spatie\LaravelSettings\Settings;
 
-class HooksSettings extends Settings
+class WebHooksSettings extends Settings
 {
 
     public string $name;
 
-    public string $platform;
+    public ?string $app_platform ;
 
     public string $header;
 
@@ -34,7 +34,7 @@ class HooksSettings extends Settings
 
     public static function group(): string
     {
-        return 'hooks';
+        return 'webhooks';
     }
 
     /* public static function encrypted(): array

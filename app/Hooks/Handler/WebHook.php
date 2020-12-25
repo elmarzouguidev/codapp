@@ -23,7 +23,7 @@ class WebHook extends HookRepository
 
     public function __invoke()
     {
-        $this->wpElementor();
+        $this->wpWooCommerce();
     }
 
     public function clickFunnels()

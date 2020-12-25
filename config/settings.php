@@ -6,12 +6,14 @@ return [
      * You can register all the settings classes here.
      */
     'settings' => [
+
         App\Settings\GeneralSettings::class,
         App\Settings\LocalisationSettings::class,
         App\Settings\EmailsSettings::class,
         App\Settings\InvoiceSettings::class,
         App\Settings\NotificationsSettings::class,
-        App\Settings\HooksSettings::class
+        App\Settings\HooksSettings::class,
+       
     ],
 
     /*

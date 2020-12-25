@@ -172,13 +172,17 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
       //  App\Providers\SettingServiceProvider::class,
+        
         App\Providers\ControllersHandlerServiceProvider::class,
         App\Providers\InterfacesHandlerServiceProvider::class,
         App\Providers\ObserverModelsServiceProvider::class,
+       
 
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        App\Providers\HooksServiceProvider::class,
 
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 

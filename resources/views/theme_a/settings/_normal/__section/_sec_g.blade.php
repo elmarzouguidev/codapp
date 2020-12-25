@@ -13,7 +13,7 @@
         </div>
     
         <div class="card-body">
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <p style="color:blue">{{getDomainName().'/'.$hooks->route}}</p>
 
             </div>
@@ -25,7 +25,7 @@
                         <div class="form-group">
                             <label>Platfome</label>
                             <select class="form-control" name="platform">
-                                <option selected>{{$hooks->platform}}</option>
+                                <option selected>{{$hooks->app_platform}}</option>
                                 <option value="shopify">Shopify</option>
                                 <option value="woocommerce">Woocommerce</option>
                                 <option value="elementor">Elementor</option>

@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Settings\EmailsSettings;
 use App\Settings\GeneralSettings;
-use App\Settings\HooksSettings;
+use App\Settings\WebHooksSettings;
 use App\Settings\InvoiceSettings;
 use App\Settings\LocalisationSettings;
 use App\Settings\NotificationsSettings;
 use App\Settings\Repositories\EmailsRepository;
 use App\Settings\Repositories\GeneralRepository;
-use App\Settings\Repositories\HooksRepository;
+use App\Settings\Repositories\WebHooksRepository;
 use App\Settings\Repositories\InvoiceRepository;
 use App\Settings\Repositories\LocalisationRepository;
 use App\Settings\Repositories\NotificationRepository;
@@ -30,10 +30,11 @@ class SettingController extends Controller
         EmailsSettings $emails,
         InvoiceSettings $invoice,
         NotificationsSettings $notifications,
-        HooksSettings $hooks
+        WebHooksSettings $hooks
 
     ) {
-
+        
+        
         return view('theme_a.settings._normal.index', [
             'settings' => $settings,
             'localisations' => $localisations,
@@ -84,7 +85,7 @@ class SettingController extends Controller
 
         if ($request->has('hooks_setting') && $request->filled('hooks_setting')) {
 
-            app(HooksRepository::class);
+            app(WebHooksRepository::class);
             return redirect()->back();
         }
     }

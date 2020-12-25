@@ -18,8 +18,8 @@ class WooCommerceValidator extends ValidatorHookRepository
 
     public function __construct()
     {
-        $this->setState(true);
+        $this->setState(false);
 
-       // $this->setPlatform('shopify');
+        $this->setPlatform('woocommerce');
     }
 }

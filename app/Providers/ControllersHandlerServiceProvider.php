@@ -20,6 +20,7 @@ class ControllersHandlerServiceProvider extends ServiceProvider
 
             ->needs('$appGuard')
             ->give($this->app->make('config')->get('auth.authUser'));
+            
 
     }
 
