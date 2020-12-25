@@ -20,15 +20,21 @@ class HooksRepository
 {
 
     const SEPARATOR = '-';
+    const SLASH = '/';
 
     public function __construct(HooksSettings $settings, HooksRequest $request)
     {
 
-        $settings->name = $request->input('name');
+        $platform = $settings->platform;
+        // $settings->name = $request->input('name');
         $settings->header = $request->input('header');
         $settings->secret = $request->input('secret');
         $settings->domain = $request->input('domain');
-        $settings->route = $this->generateRoutes($request->name);
+        if ($platform !== $request->input('platform')) {
+            $settings->platform = $request->input('platform');
+            $settings->route = $this->generateRoutes($request->platform);
+        }
+
         $settings->validated = $request->input('validated');
         $settings->active = $request->input('active');
         $settings->save();
@@ -36,8 +42,8 @@ class HooksRepository
 
     public function generateRoutes($name)
     {
-        $route = Str::slug($name) .self::SEPARATOR . Str::uuid();
-        // $route = Str::slug($name) .Str::random(40);
-        return $route;
+        return  'hooker/'.Str::slug($name) . self::SEPARATOR . Str::uuid();
+        // return Str::slug($name) .Str::random(40);
+
     }
 }

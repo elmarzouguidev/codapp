@@ -19,7 +19,7 @@ class SendNotification implements ShouldQueue
      * @return void
      */
     protected $abstract;
-    
+
     protected $model;
 
     public function __construct($abstract, $model)
@@ -35,7 +35,7 @@ class SendNotification implements ShouldQueue
      */
     public function handle()
     {
-      $this->sendEmail();
+        $this->sendEmail();
     }
 
     private function callEmail()

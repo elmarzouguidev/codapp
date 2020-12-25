@@ -1,11 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Schema;
 
-if (Schema::hasColumn('settings','name')) {
+$url  = loadSetting('Hooks')->route;
 
-    Route::webhooks(loadSetting('Hooks')->route);
-} else {
-    Route::webhooks('webhooks');
-}
+Route::webhooks($url);
+
+//

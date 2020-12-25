@@ -13,16 +13,33 @@
         </div>
     
         <div class="card-body">
+            <div class="col-sm-6">
+                <p style="color:blue">{{getDomainName().'/'.$hooks->route}}</p>
+
+            </div>
             <form action="{{route('admin.settingsPost')}}" method="post">
                 @csrf
                 <input type="hidden" name="hooks_setting" value="1">
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Platfome name</label>
-                            <input name="name" value="{{$hooks->name}}" class="form-control" type="text">
+                            <label>Platfome</label>
+                            <select class="form-control" name="platform">
+                                <option selected>{{$hooks->platform}}</option>
+                                <option value="shopify">Shopify</option>
+                                <option value="woocommerce">Woocommerce</option>
+                                <option value="elementor">Elementor</option>
+                                <option value="clickFunnels">ClickFunnels</option>
+                                <option value="ebay">Ebay</option>
+                            </select>
                         </div>
                     </div>
+                    {{--<div class="col-sm-6">
+                        <div class="form-group">
+                            <label>name</label>
+                            <input name="name" value="{{$hooks->name}}" class="form-control" type="text">
+                        </div>
+                    </div>--}}
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Header signature(for devlopper)</label>

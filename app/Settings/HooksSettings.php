@@ -18,6 +18,8 @@ class HooksSettings extends Settings
 
     public string $name;
 
+    public string $platform;
+
     public string $header;
 
     public string $secret;

@@ -21,3 +21,8 @@ function loadSetting($abstract)
 {
     return app('App\Settings\\' . $abstract . 'Settings');
 }
+
+function getDomainName()
+{
+    return request()->getSchemeAndHttpHost();
+}

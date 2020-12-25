@@ -71,6 +71,6 @@ class ValidatorHookRepository implements SignatureValidator, ValidatorHookInterf
 
     public function platforms()
     {
-        return ['woocommerce', 'elementor', 'shopify', 'ebay', 'clickfunnel'];
+        return config('platforms');
     }
 }
