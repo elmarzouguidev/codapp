@@ -19,7 +19,7 @@ class HeaderCheker  implements HeaderChekerInterface
 
     public function __construct()
     {
-       // $this->setHeader(loadSetting('Hooks')->app_platform);
+        $this->setHeader(config('Hooks.platform'));
     }
 
     /**
@@ -28,7 +28,20 @@ class HeaderCheker  implements HeaderChekerInterface
      */
     public function setHeader($header)
     {
-        $this->headerName = $header;
+        switch ($header) {
+            case 'woocommerce':
+                $this->headerName =  'x-wc-webhook-signature';
+                break;
+            case 'shopify':
+                $this->headerName =  'X-Shopify-Hmac-Sha256';
+                break;
+            case 'elementor':
+                $this->headerName =  'elementor-signature';
+                break;
+            default:
+                $this->headerName =  'appwebhook';
+        }
+      //  $this->headerName = $header;
     }
 
     public function getHeader()

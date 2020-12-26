@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'middleware_group'  => ['web', 'auth:admin,moderator'],
+    'middleware_group'  => 'web',
 
     /*
     |--------------------------------------------------------------------------

@@ -26,8 +26,9 @@ class HooksRequest extends FormRequest
     public function rules()
     {
         return [
+
             'platform' => ['required', 'string', Rule::in(config('platforms'))],
-           // 'name' => 'required|string',
+            // 'name' => 'required|string',
             'header' => 'required|string',
             'secret' => 'required|string',
             'domain' => ['required', new ValidateDomainRule()],

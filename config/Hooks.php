@@ -10,5 +10,6 @@
  **/
 
 return [
-    
+
+    'platform' => env('WEBHOOK_PLATFORM', 'woocommerce')
 ];

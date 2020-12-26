@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-$url  = loadSetting('Hooks')->app_platform;
+$url  = loadSetting('WebHooks')->route;
 
 Route::webhooks($url);
 

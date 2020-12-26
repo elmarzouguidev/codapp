@@ -12,7 +12,7 @@ return [
         App\Settings\EmailsSettings::class,
         App\Settings\InvoiceSettings::class,
         App\Settings\NotificationsSettings::class,
-        App\Settings\HooksSettings::class,
+        App\Settings\WebHooksSettings::class,
        
     ],
 

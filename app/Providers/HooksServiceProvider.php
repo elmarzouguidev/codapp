@@ -23,7 +23,7 @@ class HooksServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-      // dd(loadSetting('Hooks')->app_platform,'From here');
+     //  dd(loadSetting('WebHooks')->app_platform,'From here');
     
     }
 }

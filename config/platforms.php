@@ -16,7 +16,7 @@ return [
     'elementor',
     'clickFunnels',
     'ebay',
-    /***** */
-  //  'selected' => loadSetting('Hooks')->platform
+    /**** */
+    
 
 ];

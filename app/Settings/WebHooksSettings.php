@@ -18,7 +18,7 @@ class WebHooksSettings extends Settings
 
     public string $name;
 
-    public ?string $app_platform ;
+    public ?string $app_platform = 'woocommerce';
 
     public string $header;
 
