@@ -18,7 +18,8 @@ return [
             /*
              * The name of the header containing the signature.
              */
-            'signature_header_name' => App\Hooks\Headers\HeaderHandler::headerName(),
+          //  'signature_header_name' => App\Hooks\Headers\HeaderHandler::headerName(),
+            'signature_header_name' => 'x-wc-webhook-signature',
 
 
             /*
@@ -26,7 +27,8 @@ return [
              *
              * It should implement \Spatie\WebhookClient\SignatureValidator\SignatureValidator
              */
-            'signature_validator' => App\Hooks\Validator\ElementorValidator::class,
+            'signature_validator' => App\Hooks\Validator\WooCommerceValidator::class,
+         
 
             /*
              * This class determines if the webhook call should be stored and processed.

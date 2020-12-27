@@ -13,5 +13,4 @@ interface HookRepositoryInterface {
 
     public function getAllData();
 
-    public function setData();
 }

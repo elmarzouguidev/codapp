@@ -22,7 +22,4 @@ class HookRepository extends ProcessWebhookJob implements HookRepositoryInterfac
         return $this->webhookCall;
     }
 
-    public function setData()
-    {
-    }
 }

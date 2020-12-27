@@ -20,32 +20,19 @@ use Spatie\WebhookClient\Exceptions\WebhookFailed;
 class ValidatorHookRepository implements SignatureValidator, ValidatorHookInterface
 {
 
-
-    protected $state;
-
-    protected $platform;
-
-    public function setState($state)
-    {
-        $this->state = $state;
-    }
-
-    public function setPlatform($platform = null)
-    {
-        $this->platform = $platform;
-    }
+    protected $state = false;
 
     public function isValid(Request $request,  WebhookConfig $config): bool
     {
 
         if ($this->state) {
             logger($request->header());
-            logger($request->all());
+            logger('Ouii  is here in TTRRUUE');
             return true;
         } else {
             logger('Ouii  is here in False');
             logger($request->header());
-            logger($request->all());
+
             $signature = $request->header($config->signatureHeaderName);
 
             if (!$signature) {
@@ -58,20 +45,12 @@ class ValidatorHookRepository implements SignatureValidator, ValidatorHookInterf
             if (empty($signingSecret)) {
                 throw WebhookFailed::signingSecretNotSet();
             }
-            if (isset($this->platform) && in_array($this->platform, $this->platforms())) {
-                logger('Ohh platfomr');
-                $computedSignature = base64_encode(hash_hmac('sha256', $request->getContent(), $signingSecret, true));
-            } else {
-                logger('Ohh normal');
-                $computedSignature = hash_hmac('sha256', $request->getContent(), $signingSecret);
-            }
+
+            $computedSignature = base64_encode(hash_hmac('sha256', $request->getContent(), $signingSecret, true));
+
+            //  $computedSignature = hash_hmac('sha256', $request->getContent(), $signingSecret);
 
             return hash_equals($signature, $computedSignature);
         }
-    }
-
-    public function platforms()
-    {
-        return config('platforms');
     }
 }

@@ -23,6 +23,7 @@ class WebHook extends HookRepository
 
     public function __invoke()
     {
+        logger('Oui Im hereee __invoke');
         $this->wpWooCommerce();
     }
 
@@ -38,12 +39,13 @@ class WebHook extends HookRepository
 
     public function wpWooCommerce()
     {
-        return new WooCommerceController($this->webhookCall);
+        logger('Oui Im hereee wpWooCommerce');
+        return new WooCommerceController($this->getAllData());
     }
 
     public function shopify()
     {
 
-        return new ShopifyController($this->webhookCall);
+        return new ShopifyController($this->getAllData());
     }
 }

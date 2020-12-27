@@ -8,5 +8,5 @@ interface ValidatorHookInterface
 
     // public function isValid();
 
-    public function platforms();
+   
 }
