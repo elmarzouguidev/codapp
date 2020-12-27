@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Product;
 
 use App\Http\Requests\ProductRequest;
 
-use App\Services\AuthService;
 use App\Services\CategoryService;
 use App\Services\ProductService;
 use Illuminate\Contracts\Foundation\Application;
@@ -27,7 +26,6 @@ class Products extends Component
     public $isUpdate = false;
 
     public $productId;
-    public $authAdmin;
     public $categories;
     public $selected = []; //when user click to checkbox
 
@@ -52,14 +50,14 @@ class Products extends Component
    // protected $updatesQueryString = ['filter'];
 
     public function mount(
-        AuthService $loggedUser,
+  
         ProductService $product,
         CategoryService $category
     ) {
         //$this->categories = $category->all();
         $this->categories = $category->getInstance()->selectWithType(['name', 'id'], 'products');
         $this->model = $product;
-        $this->authAdmin = $loggedUser->getInstance()->loggedUser();
+    
     }
 
 
@@ -72,7 +70,7 @@ class Products extends Component
 
         return view('livewire.product.products', [
 
-            'products' =>    $product->getInstance()->withRelations(['category', 'admin','commands'])
+            'products' =>    $product->getInstance()->withRelations(['category','commands'])
             ->withCount('commands')
             ->paginate(10),
             // 'products' =>    $product->paginate(10)
@@ -108,20 +106,17 @@ class Products extends Component
     public function submit(ProductService $newproduct, AuthService $auth)
     {
 
-        $relation = $auth->getInstance()->getLoggedUserType();
-        $form = new ProductRequest();
-        $form->merge($this->fields);
-        $data = $form->validate($form->rules());
-
-        $product = $newproduct->getInstance()->create($data);
+        $product = $newproduct->execute('create', $this->fields);
+ 
         if ($product) {
-
-            $product->$relation()->associate($auth->getInstance()->loggedUserId())->save();
-
             $this->resetIput();
-
-            return $this->sendNotificationTobrowser(['type' => 'success', 'message' => trans('messages.added.ok')]);
+        
+            return $this->sendNotificationTobrowser([
+                'type' => 'success',
+                'message' => trans('messages.added.ok')
+            ]);
         }
+        return false;
     }
 
 
@@ -173,18 +168,11 @@ class Products extends Component
             );
 
         }
-
-        $form = new ProductRequest();
-        $form->setId($this->productId);
-        $form->merge($this->fields);
-        $data = $form->validate($form->rules());
-
         if ($this->productId) {
 
-            $product =  $upProduct->getInstance()->update($data, $this->productId);
+            $product = $upProduct->execute('update', $this->fields);
 
             if ($product) {
-                // event(new LeadCreated($lead));
                 $this->resetIput();
                 return $this->sendNotificationTobrowser(
 
@@ -193,7 +181,6 @@ class Products extends Component
                         'message' => trans('messages.updated.ok')
                     ]
                 );
-                // return redirect()->route('admin.leads');
             }
         }
     }

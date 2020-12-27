@@ -22,7 +22,7 @@ class DevlopperController extends Controller
     public function truncateData()
     {
         DB::table('webhook_calls')->truncate();
-      /*  Admin::truncate();
+        Admin::truncate();
         Moderator::truncate();
         Delivery::truncate();
         User::truncate();
@@ -35,7 +35,7 @@ class DevlopperController extends Controller
         Category::truncate();
         Product::truncate();
 
-        Setting::truncate();*/
+       // Setting::truncate();
         return redirect()->route('admin.products');
 
     }

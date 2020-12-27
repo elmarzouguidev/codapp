@@ -4,8 +4,9 @@ namespace App\Services;
 
 use App\Http\Requests\ProductRequest;
 use App\Repositories\Product\ProductRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 
-class ProductService
+class ProductService extends Servicer
 {
 
 
@@ -17,10 +18,10 @@ class ProductService
      * ProductService constructor.
      * @param ProductRepositoryInterface $lead
      */
-    public function __construct(ProductRepositoryInterface $lead)
+    public function __construct(ProductRepositoryInterface $product)
     {
-        
-        $this->model = $lead;
+
+        $this->model = $product;
     }
 
     /**
@@ -44,18 +45,6 @@ class ProductService
         return self::$_instance;
     }
 
-    /**
-     * @param $method
-     * @param $data
-     */
-    public function execute($method, $data)
-    {
-
-        if (method_exists($this, $method)) {
-            return $this->$method($data);
-        }
-        return;
-    }
 
     /**
      * @param array $data
@@ -68,7 +57,9 @@ class ProductService
         //array_merge($this->fields, ['addedby' => 'abdo'])
         $form->merge($data);
         $data = $form->validate($form->rules());
-        return $this->getInstance()->create($data);
+        $product =  $this->getInstance()->create($data);
+        $product->admin()->associate(Auth::user())->save();
+        return $product;
     }
 
     /**
@@ -82,7 +73,6 @@ class ProductService
         $form->setId($id);
         $form->merge($data);
         $data = $form->validate($form->rules());
-        return $this->getInstance()->update($data, $id);
+        return $this->getInstance()->update($data, $id) ? true : false;
     }
-
 }
