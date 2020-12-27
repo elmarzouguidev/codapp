@@ -103,7 +103,7 @@ class Products extends Component
      * @param ProductService $newproduct
      * @param AuthService $auth
      */
-    public function submit(ProductService $newproduct, AuthService $auth)
+    public function submit(ProductService $newproduct)
     {
 
         $product = $newproduct->execute('create', $this->fields);
