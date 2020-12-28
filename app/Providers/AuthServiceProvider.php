@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-       /* 'App\Models\Admin' => 'App\Policies\AdminPolicy',
+      /* 'App\Models\Admin' => 'App\Policies\AdminPolicy',
         'App\Models\City' => 'App\Policies\CityPolicy',
         'App\Models\Lead' => 'App\Policies\LeadPolicy',*/
     ];
@@ -26,7 +26,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       // $this->registerPolicies();
+      // $this->registerPolicies();
 
         //
        /* Gate::define('update-lead', function ($user) {
@@ -34,6 +34,6 @@ class AuthServiceProvider extends ServiceProvider
             return $user->id == 2;
         });*/
 
-       // Gate::define('update-lead', [LeaderPolicy::class, 'update']);
+       // Gate::define('update', [LeaderPolicy::class, 'update']);
     }
 }

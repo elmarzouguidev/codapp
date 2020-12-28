@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Admin;
 use App\Models\Lead;
+use App\Models\Moderator;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
@@ -61,10 +62,11 @@ class LeadPolicy
      */
     public function update(Admin $user, Lead $lead)
     {
-        //  return $lead->id === $user->id;
-        return   $user->email === 'abdelgha4or@gmail.com'
-            ? Response::allow()
+        return $user->hasRole('super-admin')    ? Response::allow()
             : Response::deny(trans('leadData.lead.permission.update'));
+       /* return   $user->email === 'abdelgha4or@gmail.com'
+            ? Response::allow()
+            : Response::deny(trans('leadData.lead.permission.update'));*/
     }
 
     /**
@@ -74,9 +76,9 @@ class LeadPolicy
      * @param  \App\Models\Lead  $lead
      * @return mixed
      */
-    public function delete(Admin $user, Lead $lead)
+    public function delete(Moderator $user, Lead $lead)
     {
-        //
+        return $user->id === $lead->moderator_id;
     }
 
     /**

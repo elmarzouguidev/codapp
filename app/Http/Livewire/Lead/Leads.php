@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Lead;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -20,7 +19,7 @@ use App\Traits\ItemsQuery;
 
 class Leads extends Component
 {
-    use WithPagination, AuthorizesRequests;
+    use WithPagination, Permission;
 
     public $isUpdate = false;
     public $isGroup = false;
@@ -47,7 +46,7 @@ class Leads extends Component
         'address' => '',
         'tele' => '',
         'produit' => '',
-        'group_id' => null ,
+        'group_id' => null,
     ];
 
     public $commands = [
@@ -160,31 +159,36 @@ class Leads extends Component
     {
         $lead = $updateLead->getInstance()->findOrFail($this->leadId);
 
-        if ($this->fields === $lead->toArray()) {
-            return $this->sendNotificationTobrowser(
-
-                [
-                    'type' => 'warning',
-                    'message' => trans('messages.nochange')
-                ]
-            );
-        }
-
-        if ($this->leadId) {
-
-            $lead = $updateLead->execute('update', $this->fields);
-
-            if ($lead) {
-                $this->resetIput();
+        //  $response = $this->authorize('update', $lead);
+        $action =  $this->checkPermission('update',$lead);
+        if ($action) {
+            if ($this->fields === $lead->toArray()) {
                 return $this->sendNotificationTobrowser(
 
                     [
-                        'type' => 'success',
-                        'message' => trans('messages.updated.ok')
+                        'type' => 'warning',
+                        'message' => trans('messages.nochange')
                     ]
                 );
             }
+
+            if ($this->leadId) {
+
+                $lead = $updateLead->execute('update', $this->fields);
+
+                if ($lead) {
+                    $this->resetIput();
+                    return $this->sendNotificationTobrowser(
+
+                        [
+                            'type' => 'success',
+                            'message' => trans('messages.updated.ok')
+                        ]
+                    );
+                }
+            }
         }
+
         return false;
     }
 
@@ -447,5 +451,22 @@ class Leads extends Component
     private function sendNotificationTobrowser($options = [])
     {
         $this->dispatchBrowserEvent('attachedToAction', $options);
+    }
+
+    public function getPermission($item)
+    {
+        $response = Gate::inspect('update', $item);
+        dd($response);
+        if (!$response->allowed()) {
+            dd('Sorry no allowed');
+            $this->sendNotificationTobrowser(
+
+                [
+                    'type' => 'warning',
+                    'message' => trans('leadData.lead.permission.update')
+                ]
+            );
+            return;
+        }
     }
 }

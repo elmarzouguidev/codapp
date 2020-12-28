@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Hooks\Headers\HeaderCheker;
+
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 
