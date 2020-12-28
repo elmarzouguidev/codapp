@@ -31,7 +31,7 @@ class Roles extends Component
 
     public function submit(RoleService $roleService)
     {
-        $this->isUpdate = true;
+        $this->isUpdate = false;
 
         $this->addPermission = false;
 

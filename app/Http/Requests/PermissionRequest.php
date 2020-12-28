@@ -9,7 +9,7 @@ class PermissionRequest extends FormRequest
 {
 
 
-
+    protected $permissionId;
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -27,11 +27,11 @@ class PermissionRequest extends FormRequest
      */
     public function rules()
     {
+        return $this->permissionId ?  ['name' => 'required|string'] : [['required', 'string', Rule::unique('permissions')->ignore($this->permissionId)]];
+    }
 
-        return  [
-            'name' => 'required|string',
-           // 'guard_name' => 'nullable|string', Rule::in(['admin', 'moderator']),
-            'role_id' => 'required|integer'
-        ];
+    public function setId($id)
+    {
+        $this->permissionId = $id;
     }
 }

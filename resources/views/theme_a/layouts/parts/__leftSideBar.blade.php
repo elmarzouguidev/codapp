@@ -7,6 +7,8 @@
             <li class="{{request()->routeIs('admin.dash') ? 'active':''}}"><a href="{{route('admin.dash')}}"><i class="fa fa-dashboard"></i><span>{{__('adminNav.admin.dash')}}</span></a></li>
             <li class="{{request()->routeIs('admin.admins') ? 'active':''}}"><a href="{{route('admin.admins')}}"><i class="fa fa-user"></i><span>{{__('adminNav.admin.admins')}}</span></a></li>
             <li class="{{request()->routeIs('admin.roles') ? 'active':''}}"><a href="{{route('admin.roles')}}"><i class="fa fa-lock"></i><span>{{__('adminNav.admin.roles')}}</span></a></li>
+            <li class="{{request()->routeIs('admin.permissions') ? 'active':''}}"><a href="{{route('admin.permissions')}}"><i class="fa fa-lock"></i><span>{{__('adminNav.admin.permissions')}}</span></a></li>
+
             <li class="{{request()->routeIs('admin.cities') ? 'active':''}}"><a href="{{route('admin.cities')}}"><i class="fa fa-list-ul"></i><span>{{__('adminNav.admin.cities')}}</span></a></li>
             <li class="{{request()->routeIs('admin.groups') ? 'active':''}}"><a href="{{route('admin.groups')}}"><i class="fa fa-folder"></i><span>{{__('adminNav.admin.groups')}}</span></a></li>
             <li class="{{request()->routeIs('admin.leads') ? 'active':''}}"><a href="{{route('admin.leads')}}"><i class="fa fa-folder"></i><span>{{__('adminNav.admin.leads')}}</span></a></li>

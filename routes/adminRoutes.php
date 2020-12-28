@@ -17,6 +17,7 @@ use App\Http\Controllers\DevlopperController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\ModeratorController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TodoController;
@@ -46,6 +47,11 @@ Route::group([
 
         Route::get('/', [RoleController::class, 'index'])->name('roles');
         Route::post('/', [RoleController::class, 'store'])->name('rolesPost');
+    });
+    Route::group(['prefix' => '~permissions', 'middleware' => ['role:super-admin|human-resource']], function () {
+
+        Route::get('/', [PermissionController::class, 'index'])->name('permissions');
+        Route::post('/', [PermissionController::class, 'store'])->name('permissionsPost');
     });
 
     Route::group(['prefix' => '~cities', 'middleware' => ['role:super-admin']], function () {
