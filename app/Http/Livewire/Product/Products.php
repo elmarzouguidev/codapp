@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire\Product;
 
-use App\Http\Requests\ProductRequest;
-
 use App\Services\CategoryService;
 use App\Services\ProductService;
 use Illuminate\Contracts\Foundation\Application;
@@ -15,7 +13,6 @@ use Livewire\WithPagination;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-use App\Traits\ItemsQuery;
 
 use Illuminate\Support\Facades\Gate;
 
@@ -40,24 +37,23 @@ class Products extends Component
         'photo' => '',
         'description' => '',
         'quantity' => '',
-        'price'=>'',
+        'price' => '',
         'category_id' => '',
     ];
 
     protected $model;
 
     protected $paginationTheme = 'bootstrap';
-   // protected $updatesQueryString = ['filter'];
+    // protected $updatesQueryString = ['filter'];
 
     public function mount(
-  
+
         ProductService $product,
         CategoryService $category
     ) {
         //$this->categories = $category->all();
         $this->categories = $category->getInstance()->selectWithType(['name', 'id'], 'products');
         $this->model = $product;
-    
     }
 
 
@@ -70,9 +66,9 @@ class Products extends Component
 
         return view('livewire.product.products', [
 
-            'products' =>    $product->getInstance()->withRelations(['category','commands'])
-            ->withCount('commands')
-            ->paginate(10),
+            'products' =>    $product->getInstance()->withRelations(['category', 'commands'])
+                ->withCount('commands')
+                ->paginate(10),
             // 'products' =>    $product->paginate(10)
         ]);
     }
@@ -107,10 +103,10 @@ class Products extends Component
     {
 
         $product = $newproduct->execute('create', $this->fields);
- 
+
         if ($product) {
             $this->resetIput();
-        
+
             return $this->sendNotificationTobrowser([
                 'type' => 'success',
                 'message' => trans('messages.added.ok')
@@ -159,14 +155,13 @@ class Products extends Component
         $product = $upProduct->getInstance()->findOrFail($this->productId);
 
         if ($this->fields === $product->toArray()) {
-          return  $this->sendNotificationTobrowser(
+            return  $this->sendNotificationTobrowser(
 
                 [
                     'type' => 'warning',
                     'message' => trans('messages.nochange')
                 ]
             );
-
         }
         if ($this->productId) {
 
@@ -242,8 +237,6 @@ class Products extends Component
                     'message' => trans('productData.product.export.select')
                 ]
             );
-
-
         }
         if ($this->selected) {
             $products->getInstance()->destroy(array_filter($this->selected));
@@ -273,5 +266,4 @@ class Products extends Component
     {
         $this->dispatchBrowserEvent('attachedToAction', $options);
     }
-
 }

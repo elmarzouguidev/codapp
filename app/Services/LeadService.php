@@ -47,6 +47,7 @@ class LeadService extends Servicer
      */
     protected function create(array $data)
     {
+       // dd('from service',$data);
         $form = $this->getRequest();
         $form->merge($data);
         $data = $form->validate($form->rules());

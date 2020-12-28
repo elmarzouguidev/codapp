@@ -16,11 +16,11 @@ use App\Services\LeadService;
 use App\Services\ModeratorService;
 use App\Services\ProductService;
 use App\Traits\ItemsQuery;
-use App\Traits\QueueAction;
+
 
 class Leads extends Component
 {
-    use WithPagination, AuthorizesRequests, QueueAction;
+    use WithPagination, AuthorizesRequests;
 
     public $isUpdate = false;
     public $isGroup = false;
@@ -47,7 +47,7 @@ class Leads extends Component
         'address' => '',
         'tele' => '',
         'produit' => '',
-        'group_id' => '',
+        'group_id' => null ,
     ];
 
     public $commands = [
@@ -57,7 +57,7 @@ class Leads extends Component
         'ville' => '',
         'address' => '',
         'tele' => '',
-        'product_id' => '',
+        'product_id' => null,
         'command_quantity' => '',
         'command_price' => ''
 
@@ -124,7 +124,7 @@ class Leads extends Component
     public function submit(LeadService $newLead)
     {
         $lead = $newLead->execute('create', $this->fields);
- 
+
         if ($lead) {
             $this->resetIput();
             $lead->sendQueuedNotification();
