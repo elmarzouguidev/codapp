@@ -15,6 +15,7 @@ use App\Services\LeadService;
 use App\Services\ModeratorService;
 use App\Services\ProductService;
 use App\Traits\ItemsQuery;
+use App\Traits\Permission;
 
 
 class Leads extends Component

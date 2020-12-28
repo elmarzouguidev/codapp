@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Lead;
+namespace App\Traits;
 
 use Illuminate\Support\Facades\Gate;
 

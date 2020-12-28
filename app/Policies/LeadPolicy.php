@@ -62,7 +62,7 @@ class LeadPolicy
      */
     public function update(Admin $user, Lead $lead)
     {
-        return $user->hasRole('super-admin')    ? Response::allow()
+        return $user->hasRole('super-adminu')    ? Response::allow()
             : Response::deny(trans('leadData.lead.permission.update'));
        /* return   $user->email === 'abdelgha4or@gmail.com'
             ? Response::allow()
