@@ -18,6 +18,6 @@ class ShopifyValidator extends ValidatorHookRepository
 
     public function __construct()
     {
-        $this->setState(false, 'shopify');
+      
     }
 }

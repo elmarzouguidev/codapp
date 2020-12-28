@@ -18,6 +18,6 @@ class ElementorValidator extends ValidatorHookRepository
 
     public function __construct()
     {
-        $this->setState(true);
+      
     }
 }
