@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Author    : Elmarzougui Abdelghafour (Haymacproduction)
  * website   : https://www.elmarzougui.com
@@ -10,9 +11,11 @@
 
 namespace App\Services;
 
-
+use App\Http\Requests\PermissionRequest;
 use App\Http\Requests\RoleRequest;
 use App\Repositories\Role\RoleRepositoryInterface;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Str;
 
 class RoleService extends Servicer
 {
@@ -31,7 +34,8 @@ class RoleService extends Servicer
 
         return self::$_instance;
     }
-    protected function getRequest(){
+    protected function getRequest()
+    {
 
         return new RoleRequest();
     }
@@ -61,5 +65,18 @@ class RoleService extends Servicer
         $form->merge($data);
         $data = $form->validate($form->rules());
         return $this->getInstance()->update($data, $id);
+    }
+
+
+    public function createPermission(array $data)
+    {
+
+        $role = $this->getInstance()->Find($data['role_id']);
+        $form = new PermissionRequest();
+        $form->merge($data);
+        $data = $form->validate($form->rules());
+        // dd($data, 'from roleService');
+        $permission = Permission::create(['name' => Str::slug($data['name'])]);
+        return $permission->assignRole($role);
     }
 }

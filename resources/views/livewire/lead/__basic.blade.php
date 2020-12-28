@@ -17,7 +17,7 @@
     @if($isCommand)
         @include('livewire.lead.command')
     @endif
-
+   
     <div class="row clearfix">
         {{ $leads->onEachSide(2)->links() }}
         <div class="col-md-12">

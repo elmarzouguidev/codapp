@@ -7,7 +7,7 @@ use App\Models\Lead;
 use App\Models\Moderator;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
-
+use Illuminate\Foundation\Auth\User as Authenticatable;
 class LeadPolicy
 {
     use HandlesAuthorization;
@@ -60,11 +60,11 @@ class LeadPolicy
      * @param  \App\Models\Lead  $lead
      * @return mixed
      */
-    public function update(Admin $user, Lead $lead)
+    public function update(Authenticatable $user, Lead $lead)
     {
-        return $user->hasRole('super-adminu')    ? Response::allow()
+        return $user->hasRole('super-admin')    ? Response::allow()
             : Response::deny(trans('leadData.lead.permission.update'));
-       /* return   $user->email === 'abdelgha4or@gmail.com'
+        /* return   $user->email === 'abdelgha4or@gmail.com'
             ? Response::allow()
             : Response::deny(trans('leadData.lead.permission.update'));*/
     }
@@ -76,9 +76,12 @@ class LeadPolicy
      * @param  \App\Models\Lead  $lead
      * @return mixed
      */
-    public function delete(Moderator $user, Lead $lead)
+    public function delete(Authenticatable $user, Lead $lead)
     {
-        return $user->id === $lead->moderator_id;
+       //dd($user);
+        return $user->hasRole('super-admin')
+            ? Response::allow()
+            : Response::deny(trans('leadData.lead.permission.update'));
     }
 
     /**

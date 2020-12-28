@@ -161,7 +161,7 @@ class Leads extends Component
         $lead = $updateLead->getInstance()->findOrFail($this->leadId);
 
         //  $response = $this->authorize('update', $lead);
-        $action =  $this->checkPermission('update',$lead);
+        $action =  $this->checkPermission('update', $lead);
         if ($action) {
             if ($this->fields === $lead->toArray()) {
                 return $this->sendNotificationTobrowser(
@@ -200,27 +200,33 @@ class Leads extends Component
     public function deleteLead(LeadService $delete, $id)
     {
         if ($id) {
-            $delete->getInstance()->delete($id) ?
-                $this->sendNotificationTobrowser(
+            $lead = $delete->getInstance()->find($id);
+            $can = $this->checkPermission('delete', $lead);
+            if ($can) {
+                $delete->getInstance()->delete($id) ?
+                    $this->sendNotificationTobrowser(
 
-                    [
-                        'type' => 'success',
-                        'message' => trans('messages.deleted.ok')
-                    ]
-                )
-                :
-                $this->sendNotificationTobrowser(
+                        [
+                            'type' => 'success',
+                            'message' => trans('messages.deleted.ok')
+                        ]
+                    )
+                    :
+                    $this->sendNotificationTobrowser(
 
-                    [
-                        'type' => 'error',
-                        'message' => trans('messages.deleted.no')
-                    ]
-                );
+                        [
+                            'type' => 'error',
+                            'message' => trans('messages.deleted.no')
+                        ]
+                    );
+            }
+            return false;
         }
+        return false;
     }
 
     /**
-     *
+     
      */
     public function cancel(): void
     {

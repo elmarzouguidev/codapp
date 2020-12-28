@@ -8,29 +8,38 @@ use Livewire\Component;
 class Roles extends Component
 {
     public $isUpdate = false;
-    public $roleId;
+    public $isCreate = true;
 
-    public $fields=['name'=>''];
+    public $addPermission = false;
+
+    public $roleId;
+    public $roleName = null;
+
+    public $fields = ['name' => ''];
+    public $permission = ['name' => '', 'role_id'];
 
     public function render(RoleService $roleService)
     {
-        return view('livewire.role.__roles',[
-            'roles'=>$roleService->getInstance()->All()
+        return view('livewire.role.__roles', [
+            'roles' => $roleService->getInstance()->All()
         ]);
     }
 
     public function mount()
     {
-
     }
 
     public function submit(RoleService $roleService)
     {
-        if(!isset($this->fields) || !is_array($this->fields)){
+        $this->isUpdate = true;
+
+        $this->addPermission = false;
+
+        if (!isset($this->fields) || !is_array($this->fields)) {
             return false;
         }
-        $role = $roleService->execute('create',$this->fields);
-        if($role){
+        $role = $roleService->execute('create', $this->fields);
+        if ($role) {
 
             $this->resetInput();
             return $this->sendNotificationTobrowser([
@@ -41,18 +50,50 @@ class Roles extends Component
         return false;
     }
 
+    public function addPermissionAction(RoleService $roleService, $id)
+    {
 
-    public function editRole(RoleService $roleService,$id)
+        $role = $roleService->getInstance()->Find($id);
+        if ($role) {
+            $this->roleName = $role->name;
+            $this->roleId = $role->id;
+            $this->permission['role_id'] = $role->id;
+            $this->addPermission = true;
+        }
+        $this->isUpdate = false;
+        $this->isCreate = false;
+    }
+
+    public function addPermissionActionSave(RoleService $roleService)
+    {
+        if (!isset($this->roleId) || !is_int($this->roleId)) return false;
+        if ($this->roleId) {
+            $permission = $roleService->execute('createPermission', $this->permission);
+            if ($permission) {
+                $this->resetInput();
+                return $this->sendNotificationTobrowser(
+
+                    [
+                        'type' => 'success',
+                        'message' => trans('messages.updated.ok')
+                    ]
+                );
+            }
+        }
+    }
+
+    public function editRole(RoleService $roleService, $id)
     {
         $role = $roleService->getInstance()->Find($id);
         $this->roleId = $role->id;
         $this->fields = $role->toArray();
         $this->isUpdate = true;
-
+        $this->isCreate = false;
+        $this->addPermission = false;
     }
     public function update(RoleService $roleService)
     {
-        if(!isset($this->roleId) || !is_int($this->roleId)) return false;
+        if (!isset($this->roleId) || !is_int($this->roleId)) return false;
 
         $r = $roleService->getInstance()->Find($this->roleId);
 
@@ -64,7 +105,6 @@ class Roles extends Component
                     'message' => trans('messages.nochange')
                 ]
             );
-
         }
 
         if ($this->roleId) {
@@ -84,7 +124,7 @@ class Roles extends Component
         }
         return false;
     }
-    public function deleteRole(RoleService $roleService,$id)
+    public function deleteRole(RoleService $roleService, $id)
     {
         if ($id) {
             $roleService->getInstance()->delete($id) ?
@@ -116,10 +156,8 @@ class Roles extends Component
     private function resetInput()
     {
         $this->fields = null;
+        $this->permission = null;
     }
-
-
-
 
     private function sendNotificationTobrowser($options = [])
     {

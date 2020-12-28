@@ -1,5 +1,7 @@
 <div>
-
+    @can('add-leads')
+     <p>Yes You can add leads</p>
+    @endcan
     <div class="row clearfix">
         {{--$products->onEachSide(2)->links()--}}
         {{--$commands->links()--}}
@@ -42,8 +44,12 @@
                             <tr>
                                 @if($isUpdate)
                                     @include('livewire.role.__update')
-                                @else
+                                @endif
+                                @if($isCreate)
                                     @include('livewire.role.__create')
+                                @endif
+                                @if($addPermission)
+                                   @include('livewire.role.__addPermission')
                                 @endif
                             </tr>
                             <tr>
@@ -70,7 +76,11 @@
                                     <td>{{$role->id}}</td>
                                     <td><span>{{$role->name}}</span></td>
 
-
+                                    <td><a wire:click="addPermissionAction({{ $role->id }})" href="javascript:void(0);"
+                                            class="btn btn-success btn-sm" onclick="topFunction()">
+                                            {{__('Add Permission')}}
+                                        </a>
+                                    </td>
                                     <td><a wire:click="editRole({{ $role->id }})" href="javascript:void(0);"
                                            class="btn btn-success btn-sm" onclick="topFunction()">
                                             {{__('action.edit')}}
