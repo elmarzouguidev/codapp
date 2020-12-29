@@ -13,6 +13,6 @@ class LeadSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\Lead::factory(30)->create();
     }
 }

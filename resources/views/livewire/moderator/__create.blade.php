@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    {{$errors}}
+               
                     <form>
                         <div class="row clearfix">
 
