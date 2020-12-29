@@ -92,7 +92,33 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-lg-4 col-md-12">
+                                <label>{{__('forms.permission')}}</label>
+                                <div wire:ignore  class="form-group multiselect_div">
+                                    <select wire:model="selectes"
+                                     id="multiselect3-all" 
+                                     name="selectes[]" 
+                                     class="multiselect multiselect-custom permissions_selects" 
+                                     multiple="multiple"
+                                    
+                                     >
+                                        <option value="multiselect-all">Select All</option>
+                                        @foreach($permissions as $permission)
+                                            <option 
+                                          
+                                             value="{{$permission->name}}">
+                                             {{$permission->name}}
+                                            </option>
+                                        @endforeach
 
+                                    </select>
+                                    @error('permissions')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="col-lg-12 mt-3">
                                 <button wire:click.prevent="update()" class="btn btn-primary">{{__('action.update')}}</button>
                                 <button wire:click.prevent="cancel()"  class="btn btn-default">{{__('action.cancel')}}</button>

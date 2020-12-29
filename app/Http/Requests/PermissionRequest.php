@@ -27,7 +27,12 @@ class PermissionRequest extends FormRequest
      */
     public function rules()
     {
-        return $this->permissionId ?  ['name' => 'required|string'] : [['required', 'string', Rule::unique('permissions')->ignore($this->permissionId)]];
+        return $this->permissionId ?
+            [
+                ['required', 'string', Rule::unique('permissions')->ignore($this->permissionId)]
+            ]
+            :
+            ['name' => 'required|string'];
     }
 
     public function setId($id)

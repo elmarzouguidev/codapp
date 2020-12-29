@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Moderator;
 use App\Services\AuthService;
 use App\Services\CityService;
 use App\Services\ModeratorService;
+use App\Services\PermissionService;
 use Livewire\Component;
 
 class Moderators extends Component
@@ -21,38 +22,42 @@ class Moderators extends Component
         'tele' => '',
 
     ];
+    public $selectes = [];
+
+    public $selected = [];
 
     public $moderatorId;
 
-    public function render(ModeratorService $moderatorService, CityService $cityService)
+    public function render(ModeratorService $moderatorService, CityService $cityService, PermissionService $permissionService)
     {
         $moderators = $moderatorService->getInstance()
             ->with(['ville'])
             ->get();
         $villes = $cityService->getInstance()->getSelect(['id', 'name']);
+        $permissions = $permissionService->getInstance()->select(['id', 'name'])->get();
 
         return view('livewire.moderator.__moderators', [
 
             'moderators' => $moderators,
-
             'villes' => $villes,
+            'permissions' => $permissions
 
         ]);
     }
 
     public function mount()
     {
-
     }
 
     public function submit(ModeratorService $moderatorService, AuthService $authService)
     {
-        if(!isset($this->fields) || !is_array($this->fields)){
+        //  dd($this->selectes);
+        if (!isset($this->fields) || !is_array($this->fields)) {
             return false;
         }
         $admin = $authService->getInstance()->loggedUser()->fullname;
-        $user = $moderatorService->execute('create',array_merge($this->fields, ['addedBy' => $admin]));
-        if($user){
+        $user = $moderatorService->execute('create', array_merge($this->fields, ['permissions' => $this->selectes, 'addedBy' => $admin]));
+        if ($user) {
 
             $this->resetInput();
             return $this->sendNotificationTobrowser([
@@ -63,7 +68,7 @@ class Moderators extends Component
         return false;
     }
 
-    public function editModerator(ModeratorService $moderatorService,$id)
+    public function editModerator(ModeratorService $moderatorService, $id)
     {
         $user = $moderatorService->getInstance()->findOrFail($id);
         $this->moderatorId = $user->id;
@@ -73,7 +78,7 @@ class Moderators extends Component
 
     public function update(ModeratorService $moderatorService)
     {
-        if(!isset($this->moderatorId) || !is_int($this->moderatorId)) return false;
+        if (!isset($this->moderatorId) || !is_int($this->moderatorId)) return false;
 
         $user = $moderatorService->getInstance()->findOrFail($this->moderatorId);
 
@@ -85,7 +90,6 @@ class Moderators extends Component
                     'message' => trans('messages.nochange')
                 ]
             );
-
         }
 
         if ($this->moderatorId) {
@@ -112,7 +116,7 @@ class Moderators extends Component
         $this->resetInput();
     }
 
-    public function deleteModerator(ModeratorService $moderatorService,$id)
+    public function deleteModerator(ModeratorService $moderatorService, $id)
     {
         if ($id) {
             $moderatorService->getInstance()->delete($id) ?
@@ -136,7 +140,8 @@ class Moderators extends Component
 
 
     /**** private method ***/
-    private function resetInput(){
+    private function resetInput()
+    {
 
         $this->fields = null;
     }
@@ -145,5 +150,4 @@ class Moderators extends Component
     {
         $this->dispatchBrowserEvent('attachedToAction', $options);
     }
-
 }

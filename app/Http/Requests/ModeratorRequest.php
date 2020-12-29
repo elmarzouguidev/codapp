@@ -16,7 +16,7 @@ class ModeratorRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,6 +26,7 @@ class ModeratorRequest extends FormRequest
      */
     public function rules()
     {
+
         return isset($this->userId) ?
             [
                 'nom' => 'required|string',
@@ -44,7 +45,11 @@ class ModeratorRequest extends FormRequest
                 'email' => 'required|email|unique:moderators',
                 'address' => 'required|string',
                 'city_id' => 'required|integer',
-                'addedBy'=>'required|string',
+                'addedBy' => 'required|string',
+                'permissions' => ['sometimes', 'array', Rule::in([
+                    'add-leads', 'update-leads', 'delete-leads'
+
+                ])],
                 //'password_confirmation' => 'required|min:4',
                 'password' => 'required|string|min:4'
 

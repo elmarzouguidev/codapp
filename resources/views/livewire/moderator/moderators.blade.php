@@ -49,3 +49,18 @@
         </div>
     </div>
 </div>
+@push('scripts')
+    <script>
+     document.addEventListener('livewire:load',function ()
+        {
+            $('#multiselect3-all').multiselect({
+                includeSelectAllOption: true,
+            });
+
+            $('.permissions_selects').on('change', function (e) {
+                var data = $('.permissions_selects').multiselect("val");
+                @this.set('selectes', data);
+            });
+        });
+    </script>
+@endpush

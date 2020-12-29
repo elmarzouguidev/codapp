@@ -55,7 +55,13 @@ class ModeratorService extends Servicer
 
         $form->merge($data);
         $data = $form->validate($form->rules());
-        return $this->getInstance()->create($data);
+        // dd('from service', $data);
+        $user = $this->getInstance()->create($data);
+        if (isset($data['permissions']) && is_array($data['permissions'])) {
+            $user->givePermissionTo($data['permissions']);
+            return $user;
+        }
+        return $user;
     }
 
     /**
@@ -74,5 +80,4 @@ class ModeratorService extends Servicer
 
 
     /******Authorisations system  */
-
 }

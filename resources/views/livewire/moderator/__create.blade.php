@@ -3,6 +3,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
+                    {{$errors}}
                     <form>
                         <div class="row clearfix">
 
@@ -56,7 +57,7 @@
                                 <div class="col-lg-5 col-md-12">
                                     <div class="form-group">
                                         <label class="form-label">{{__('forms.city')}}</label>
-                                        <select wire:model.defer="fields.city_id" name="city_id" class="custom-select @error('city_id') is-invalid @enderror">
+                                        <select  wire:model.defer="fields.city_id" name="city_id" class="custom-select @error('city_id') is-invalid @enderror">
                                             <option wire:key="" value=""></option>
                                             @foreach($villes as $ville)
                                                 <option wire:key="{{$ville->id}}" value="{{$ville->id}}">{{$ville->name}}</option>
@@ -84,11 +85,39 @@
                                 <div class="col-lg-4 col-md-12">
                                     <div class="form-group">
                                         <label class="form-label">{{__('forms.password')}}</label>
-                                        <input type="text" wire:model.defer="fields.password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" onclick="generatePassword()" value="" placeholder="{{__('forms.password')}}">
+                                        <input type="text" wire:model.defer="fields.password" name="password" id="password" class="form-control @error('password') is-invalid @enderror"  value="" placeholder="{{__('forms.password')}}">
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-12">
+                                    <label>{{__('forms.permission')}}</label>
+                                    <div wire:ignore  class="form-group multiselect_div">
+                                        <select wire:model="selectes"
+                                         id="multiselect3-all" 
+                                         name="selectes[]" 
+                                         class="multiselect multiselect-custom permissions_selects" 
+                                         multiple="multiple"
+                                        
+                                         >
+                                            <option value="multiselect-all">Select All</option>
+                                            @foreach($permissions as $permission)
+                                                <option 
+                                              
+                                                 value="{{$permission->name}}">
+                                                 {{$permission->name}}
+                                                </option>
+                                            @endforeach
+
+                                        </select>
+                                        @error('permissions')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                         @enderror
                                     </div>
                                 </div>
@@ -114,7 +143,7 @@
                                     <input type="file" class="dropify">
                                 </div>--}}
                                 <div class="col-lg-12 mt-3">
-                                    <button wire:click.prevent="submit()" class="btn btn-primary">{{__('action.add')}}</button>
+                                    <button  wire:click.prevent="submit()" class="btn btn-primary">{{__('action.add')}}</button>
                                     {{--<button  class="btn btn-default">Cancel</button>--}}
                                 </div>
 
@@ -125,6 +154,7 @@
         </div>
     </div>
 </div>
+
 
 
 

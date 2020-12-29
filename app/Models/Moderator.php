@@ -58,7 +58,7 @@ class Moderator extends Authenticatable
      */
     protected $guard = 'moderator';
 
-    protected $guard_name = 'moderator';
+    protected $guard_name = 'admin'; //for permissions and roles
 
     protected $casts = [
         'email_verified_at' => 'datetime',

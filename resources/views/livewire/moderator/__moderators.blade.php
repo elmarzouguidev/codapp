@@ -103,3 +103,19 @@
     </div>
 </div>
 
+@push('scripts')
+    <script>
+     document.addEventListener('livewire:load',function ()
+        {
+           //
+
+            $('.permissions_selects').on('change', function (e) {
+  
+                var data = $('.permissions_selects').val();
+               // console.log(data);
+                @this.set('selectes', data);
+            });
+         
+        });
+    </script>
+@endpush
