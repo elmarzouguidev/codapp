@@ -18,7 +18,7 @@ class AdminCacheRepository implements AdminRepositoryInterface
     }
 
     public function  getInstance(){
-        
+
     }
     public function query()
     {
@@ -72,5 +72,6 @@ class AdminCacheRepository implements AdminRepositoryInterface
 
     public function deleteAdmin($id)
     {
+        // ot delete admin
     }
 }

@@ -71,7 +71,7 @@ class Lead extends Model
     {
         parent::boot();
 
-        static::creating(function ($query) {
+         static::creating(function ($query) {
 
          //  $query->addedby = $authAdmin;
         });

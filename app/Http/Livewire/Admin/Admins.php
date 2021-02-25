@@ -62,7 +62,7 @@ class Admins extends Component
      */
     public function submit(AdminService $newAdmin)
     {
-        
+
         $admin = $newAdmin->execute('create', $this->fields);
 
         if ($admin) {

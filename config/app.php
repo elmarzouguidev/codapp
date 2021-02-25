@@ -172,26 +172,25 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
       //  App\Providers\SettingServiceProvider::class,
-        
-        App\Providers\ControllersHandlerServiceProvider::class,
-        App\Providers\InterfacesHandlerServiceProvider::class,
-        App\Providers\ObserverModelsServiceProvider::class,
-       
 
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        App\Providers\HooksServiceProvider::class,
 
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
-        /***** */
-        App\Providers\RepositoryServiceProvider::class,
-        //App\Providers\RepositoryAdapterServiceProvider::class,
 
         /****Elmarzougui Abdelghafour  */
-        App\Providers\DevlopperServiceProvider::class
+                /***** */
+        App\Providers\RepositoryServiceProvider::class,
+        //App\Providers\RepositoryAdapterServiceProvider::class,
+        App\Providers\DevlopperServiceProvider::class,
+        App\Providers\ControllersHandlerServiceProvider::class,
+        App\Providers\InterfacesHandlerServiceProvider::class,
+        App\Providers\ObserverModelsServiceProvider::class,
+        App\Providers\HooksServiceProvider::class,
+
 
     ],
 
