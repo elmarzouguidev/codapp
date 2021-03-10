@@ -24,7 +24,7 @@ class AdminSeeder extends Seeder
                 'prenom' => 'Abdelghafour',
                 'email' => 'abdelgha4or@gmail.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('123456789@'), // password
+                'password' => '123456789@', // password already hashed in the model see setPasswordAttribute()
                 'remember_token' => Str::random(10),
                 'city_id' => 1
 

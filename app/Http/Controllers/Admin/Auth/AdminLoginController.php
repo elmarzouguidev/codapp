@@ -74,7 +74,7 @@ class AdminLoginController extends Controller
 
             return false;
         }
-
+        //dd('Oui',$request);
         return $this->guard($guard['guard'])->attempt(
             $this->credentials($request),
             $request->filled('remember')
@@ -85,8 +85,9 @@ class AdminLoginController extends Controller
      * @param string $guard
      * @return \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard
      */
-    protected function guard($guard = 'admin')
+    protected function guard($guard = null)
     {
+
         return Auth::guard($guard);
     }
 
