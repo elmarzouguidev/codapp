@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\City;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Spatie\Permission\Models\Role;
 
-class CityFactory extends Factory
+class RoleFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = City::class;
+    protected $model = Role::class;
 
     /**
      * Define the model's default state.
@@ -22,9 +22,8 @@ class CityFactory extends Factory
     public function definition()
     {
         return [
-
-            'name' => 'casablanca', 'slug' => 'casablanca'
+            ['name'=>'super-admin','guard'=>'admin'],
+            ['name'=>'human-resource','guard'=>'admin'],
         ];
-
     }
 }

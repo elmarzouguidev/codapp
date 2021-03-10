@@ -25,6 +25,7 @@ class AdminFactory extends Factory
     public function definition()
     {
         return [
+
             'nom' => 'Elmarzougui',
             'prenom' => 'Abdelghafour',
             'email' => 'abdelgha4or@gmail.com',
@@ -34,6 +35,6 @@ class AdminFactory extends Factory
             'city_id' => 1
         ];
     }
-
+    
 
 }

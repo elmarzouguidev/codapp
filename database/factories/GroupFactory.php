@@ -22,7 +22,8 @@ class GroupFactory extends Factory
     public function definition()
     {
         return [
-            //
+                'name' => 'group a', 'slug' => 'group-a',
+
         ];
     }
 }
