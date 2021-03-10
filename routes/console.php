@@ -26,3 +26,11 @@ Artisan::command('log:clear', function() {
     $this->comment('Logs have been cleared!');
 
 })->describe('Clear log files');
+
+Artisan::command('debugbar:clear', function() {
+
+    exec('rm ' . storage_path('debugbar/*.json'));
+
+    $this->comment('debugbar have been cleared!');
+
+})->describe('Clear debugbar files');
