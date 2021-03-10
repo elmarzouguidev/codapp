@@ -13,6 +13,7 @@ class AdminCacheRepository implements AdminRepositoryInterface
     public function __construct($cache, $repo)
     {
         $this->repo = $repo;
+
         $this->cache = $cache;
 
     }

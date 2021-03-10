@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -67,8 +68,12 @@ class RouteServiceProvider extends ServiceProvider
                 ->as('delivery.')
                 ->group(base_path('routes/deliveryRoutes.php'));
 
-            Route::middleware('web')
-                ->group(base_path('routes/hooksRoutes.php'));
+                if(Schema::hasTable('settings') && Schema::hasColumn('settings','group')){
+
+                    Route::middleware('web')
+                           ->group(base_path('routes/hooksRoutes.php'));
+                }
+
         });
     }
 
