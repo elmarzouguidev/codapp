@@ -19,6 +19,19 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 
+Artisan::command('env:clear', function() {
+
+
+    $files = glob(storage_path('dotenv-editor/backups/{,.}*'), GLOB_BRACE); // get all file names
+    foreach($files as $file){ // iterate files
+        if(is_file($file)) {
+            unlink($file); // delete file
+        }
+    }
+    $this->comment('dotenv-editor/backups have been cleared!');
+
+})->describe('Clear log files');
+
 Artisan::command('log:clear', function() {
 
     exec('rm ' . storage_path('logs/*.log'));

@@ -16,7 +16,7 @@ use App\Http\Requests\Settings\Hooks\HooksRequest;
 use App\Settings\WebHooksSettings;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
-
+use Jackiedo\DotenvEditor\Facades\DotenvEditor;
 class WebHooksRepository
 {
 
@@ -40,7 +40,13 @@ class WebHooksRepository
 
             $settings->route = $this->generateRoutes($request->platform);
 
-            setEnv('WEBHOOK_PLATFORM', $request->input('platform'));
+            $headerSignature = $this->getPlatfromHeaderSignature($request->platform);
+
+            $env = DotenvEditor::load();
+
+            $env->setKey('WEBHOOK_PLATFORM', $request->input('platform'));
+            $env->setKey('WEBHOOK_HEADER_SIGNATURE', $headerSignature);
+            $env->save();
         }
 
         $settings->validated = $request->input('validated');
@@ -64,5 +70,30 @@ class WebHooksRepository
             chmod(config_path('Hodoks.php'), 0777);
         }
         file_put_contents(config_path('Hodoks.php'), $platform);
+    }
+
+    public function getPlatfromHeaderSignature($platform)
+    {
+
+        switch ($platform) {
+            case 'woocommerce':
+                return 'x-wc-webhook-signature';
+                break;
+            case 'shopify':
+                return 'X-Shopify-Hmac-Sha256';
+                break;
+            case 'elementor':
+                return 'elementor-signature';
+                break;
+            case 'clickFunnels':
+                return 'clickfunnels-signature-header';
+                break;
+            case 'ebay':
+                return 'ebay-signature-header';
+                break;
+            default:
+               return 'appwebhook-haymacproduction';
+        }
+      //  $this->headerName = $header;
     }
 }

@@ -8,5 +8,5 @@ Route::get('install/configuration', [InstallController::class,'getConfiguration'
 Route::post('install/configuration', [InstallController::class,'postConfiguration'])->name('install.configuration.post');
 Route::get('install/complete', [InstallController::class,'complete'])->name('install.complete');
 
-Route::get('license', 'LicenseController@create')->name('license.create');
-Route::post('license', 'LicenseController@store')->name('license.store');
+/*Route::get('license', 'LicenseController@create')->name('license.create');
+Route::post('license', 'LicenseController@store')->name('license.store');*/

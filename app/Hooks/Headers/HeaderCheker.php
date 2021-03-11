@@ -17,9 +17,9 @@ class HeaderCheker  implements HeaderChekerInterface
 
     protected $headerName;
 
-    public function __construct()
+    public function __construct($header)
     {
-        $this->setHeader(config('Hooks.platform'));
+        $this->setHeader($header);
     }
 
     /**
@@ -46,6 +46,8 @@ class HeaderCheker  implements HeaderChekerInterface
 
     public function getHeader()
     {
+        info('header : ',$this->headerName);
+
         return $this->headerName;
     }
 }

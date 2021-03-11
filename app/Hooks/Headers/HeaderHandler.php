@@ -15,8 +15,11 @@ namespace App\Hooks\Headers;
 class HeaderHandler extends HeaderCheker
 {
 
-    public static function headerName()
+    public function __construct()
     {
-        return  app(HeaderCheker::class)->getHeader();
+
+        $header = new HeaderCheker(config('Hooks.platform'));
+
+        return $header->getHeader();
     }
 }

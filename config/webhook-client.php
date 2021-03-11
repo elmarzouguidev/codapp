@@ -18,8 +18,8 @@ return [
             /*
              * The name of the header containing the signature.
              */
-          //  'signature_header_name' => App\Hooks\Headers\HeaderHandler::headerName(),
-            'signature_header_name' => 'x-wc-webhook-signature',
+            //'signature_header_name' => App\Hooks\Headers\HeaderHandler::class,
+            'signature_header_name' => env('WEBHOOK_HEADER_SIGNATURE','x-wc-webhook-signature'),
 
 
             /*

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 $url  = loadSetting('WebHooks')->route;
 
-Route::webhooks($url);
+Route::webhooks($url,'webhooker');
 
 
 //
