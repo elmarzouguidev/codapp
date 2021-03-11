@@ -4,7 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Site\SiteController;
 use App\Http\Controllers\TestController;
 use App\Mail\EmailForQueuing;
-use Illuminate\Support\Facades\Artisan;
+
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 Route::get('/',[SiteController::class,'index'])->name('home');
 Route::post('/hooker',[TestController::class,'postHook']);
 Route::get('/te',function(){

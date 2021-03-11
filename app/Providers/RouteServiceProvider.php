@@ -42,6 +42,10 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
 
+            /*** Install routes***/
+            Route::middleware('web')
+                ->group(base_path('routes/installRoutes.php'));
+
             Route::prefix('api')
                 ->middleware('api')
                 ->namespace($this->namespace)
@@ -68,11 +72,15 @@ class RouteServiceProvider extends ServiceProvider
                 ->as('delivery.')
                 ->group(base_path('routes/deliveryRoutes.php'));
 
-                if(Schema::hasTable('settings') && Schema::hasColumn('settings','group')){
+                if(config('app.installed')){
 
-                    Route::middleware('web')
-                           ->group(base_path('routes/hooksRoutes.php'));
+                    if(Schema::hasTable('settings') && Schema::hasColumn('settings','group')){
+
+                        Route::middleware('web')
+                               ->group(base_path('routes/hooksRoutes.php'));
+                    }
                 }
+
 
         });
     }
@@ -102,5 +110,11 @@ class RouteServiceProvider extends ServiceProvider
 
             return $this->namespace . '\Admin\Auth';
         }
+    }
+    private function InstallerNameSpace()
+    {
+
+        return $this->namespace . '\Installer';
+
     }
 }

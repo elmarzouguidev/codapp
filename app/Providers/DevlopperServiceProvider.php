@@ -23,8 +23,9 @@ class DevlopperServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-        Schema::disableForeignKeyConstraints();
+        if(config('app.installed')){
+          Schema::disableForeignKeyConstraints();
+        }
         // Schema::enableForeignKeyConstraints();
     }
 }

@@ -15,6 +15,17 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'installed' => env('APP_INSTALLED', false),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application cache
+    |--------------------------------------------------------------------------
+    | Set this to true to use the cache decorators, this will greatly improve
+    | the application speed and performance
+    */
+    //'cache' => env('APP_CACHE', false),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -190,6 +201,7 @@ return [
         App\Providers\InterfacesHandlerServiceProvider::class,
         App\Providers\ObserverModelsServiceProvider::class,
         App\Providers\HooksServiceProvider::class,
+
 
 
     ],

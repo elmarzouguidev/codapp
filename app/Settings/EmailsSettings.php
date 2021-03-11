@@ -31,7 +31,7 @@ class EmailsSettings extends Settings
     public string $smtp_security;
 
     public ? string $smtp_auth_domain;
-   
+
     public static function group(): string
     {
         return 'emails';
@@ -40,7 +40,7 @@ class EmailsSettings extends Settings
     public static function encrypted(): array
     {
         return [
-            'smtp_pass'
+            //'smtp_pass'
          ];
     }
 }
