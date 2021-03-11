@@ -61,17 +61,6 @@ class WebHooksRepository
         return  self::PREFIX . self::SLASH . Str::slug($name) . self::SEPARATOR . Str::uuid();
     }
 
-
-    private function createConfigFile($platform)
-    {
-        if (!file_exists(config_path('Hodoks.php'))) {
-            // dd('Ouii not exit');
-            mkdir(config_path('Hodoks.php'));
-            chmod(config_path('Hodoks.php'), 0777);
-        }
-        file_put_contents(config_path('Hodoks.php'), $platform);
-    }
-
     public function getPlatfromHeaderSignature($platform)
     {
 
