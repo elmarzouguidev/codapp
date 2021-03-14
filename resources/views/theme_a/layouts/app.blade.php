@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" dir="ltr">
 <head>
   @include('theme_a.layouts.parts.fullHead')
@@ -6,7 +6,7 @@
 
     <body class="font-montserrat">
 
-        {{--@include('theme_a.layouts.parts.__loader')--}}
+        @include('theme_a.layouts.parts.__loader')
 
         <div id="main_content">
 
