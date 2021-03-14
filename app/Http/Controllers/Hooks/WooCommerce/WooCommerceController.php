@@ -12,7 +12,6 @@ class WooCommerceController extends Controller
 
     use DataTrait;
 
-    
     private $data;
 
 

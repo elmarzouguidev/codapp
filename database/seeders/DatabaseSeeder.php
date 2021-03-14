@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
-            RoleSeeder::class,
-            CitySeeder::class,
-            AdminSeeder::class,
+            RoleSeeder::class, // if you use Installer you should disable it
+            CitySeeder::class, // if you use Installer you should disable it
+            AdminSeeder::class, // if you use Installer you should disable it
             GroupSeeder::class,
             CategorySeeder::class
         ]);

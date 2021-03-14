@@ -13,11 +13,11 @@
     @if($isModerator)
         @include('livewire.lead.__moderator')
     @endif
-    {{-- @include('livewire.lead.__filter') --}}
+    @include('livewire.lead.__filter')
     @if($isCommand)
         @include('livewire.lead.command')
     @endif
-   
+
     <div class="row clearfix">
         {{ $leads->onEachSide(2)->links() }}
         <div class="col-md-12">

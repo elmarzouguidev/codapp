@@ -11,19 +11,22 @@ class AdminAccount
     public function setup($data)
     {
 
-        $role = $this->createRole();
+        $exists = Admin::whereEmail($data['email'])->exists();
+        if(!$exists){
 
-        $admin = Admin::create([
-            'nom' => $data['first_name'],
-            'prenom' => $data['last_name'],
-            'email' => $data['email'],
-            'password' => $data['password'],
-            /**** */
-            'city_id' => 1
-        ]);
+            $role = $this->createRole();
 
-        $admin->assignRole($role);
+            $admin = Admin::create([
+                'nom' => $data['first_name'],
+                'prenom' => $data['last_name'],
+                'email' => $data['email'],
+                'password' => $data['password'],
+                /**** */
+                'city_id' => 1
+            ]);
 
+            $admin->assignRole($role);
+       }
     }
 
     public function createRole(){

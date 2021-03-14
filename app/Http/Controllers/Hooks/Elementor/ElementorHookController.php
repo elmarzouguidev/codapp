@@ -36,7 +36,7 @@ class ElementorHookController extends Controller
         }
 
         $items =  $validator->validated();
-        
+
        //  Log::info($items);
         // Log::info('From ClickFunnelsHookController');
         // Logger($data);

@@ -83,17 +83,17 @@ class Handler extends ExceptionHandler
                    ], 404);
          }*/
 
-       if (request()->is('appwebhook/*')) {
+       if (request()->is('appwebhook/*') || request()->is('appwebhook')) {
 
             if($exception instanceof MethodNotAllowedHttpException){
                 return response()->json([
-                    'data' => 'sorry this route is not Allowed from Browser Directly'
+                    'data' => 'sorry this URL is not Allowed from Browser Directly'
                 ], 404);
             }
 
            if($exception instanceof NotFoundHttpException){
                 return response()->json([
-                    'data' => 'sorry this route is not Found'
+                    'data' => 'sorry this URL is not Found'
                 ], 404);
            }
 

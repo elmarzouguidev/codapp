@@ -42,12 +42,8 @@ class App
         Role::create(['name' => 'human-resource', 'guard_name'=>'admin']);
     }
 
-    private function createStorageFolder()
+    private function createInvoicesFolder()
     {
-        mkdir(public_path('storage'));
-    }
-
-    public function isDone(){
-        return redirect()->route('install.complete');
+        mkdir(public_path('invoices'));
     }
 }
