@@ -23,11 +23,11 @@
     <div class="auth_left">
         <div class="card">
             <div class="text-center mb-2">
-                <a class="header-brand" href="index.html"><i class="fa fa-soccer-ball-o brand-logo"></i></a>
+                <a class="header-brand" href="/"><i class="fa fa-soccer-ball-o brand-logo"></i></a>
             </div>
             <div class="card-body">
                 <div class="card-title">{{ __('auth.loginText') }}</div>
-              
+
                 <form action="{{route('admin.login')}}" method="post">
                     @honeypot
                     @csrf
@@ -36,7 +36,7 @@
                                 <option value=""></option>
                                 <option value="admin">Administrator</option>
                                 <option value="moderator">Operatrice</option>
-                          
+
                             </select>
                             @error('guard')
                                 <span class="invalid-feedback" role="alert">
@@ -44,7 +44,7 @@
                                 </span>
                             @enderror
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="form-label">{{ __('auth.loginEmail') }}</label>
                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="emailHelp" value="{{ old('email') ?? 'abdelgha4or@gmail.com' }}" placeholder="{{ __('auth.loginEmailPlaceHolder') }}">
@@ -69,7 +69,7 @@
                     </div>
                     <div class="form-group">
                         <label class="custom-control custom-checkbox">
-                        
+
                         <input type="checkbox" name="remember" class="custom-control-input" {{ old('remember') ? 'checked' : '' }} />
                         <span class="custom-control-label">{{ __('auth.loginRemember') }}</span>
                         </label>
@@ -83,7 +83,7 @@
             <div class="text-center text-muted">
                 Don't have account yet? <a href="/register">Sign up</a>
             </div>
-        </div>        
+        </div>
     </div>
     <div class="auth_right full_img"></div>
 </div>
