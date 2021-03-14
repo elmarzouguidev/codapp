@@ -11,6 +11,7 @@
 
 namespace App\Settings;
 
+use phpDocumentor\Reflection\Types\Boolean;
 use Spatie\LaravelSettings\Settings;
 
 class WebHooksSettings extends Settings
@@ -28,9 +29,9 @@ class WebHooksSettings extends Settings
 
     public string $route;
 
-    public bool $validated;
+    public  bool $validated;
 
-    public bool $active;
+    public  bool $active;
 
     public static function group(): string
     {

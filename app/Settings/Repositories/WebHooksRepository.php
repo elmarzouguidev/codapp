@@ -49,8 +49,12 @@ class WebHooksRepository
             $env->save();
         }
 
-        $settings->validated = $request->input('validated');
-        $settings->active = $request->input('active');
+        /*$settings->validated = $request->input('validated');
+        $settings->active = $request->input('active');*/
+
+        $settings->validated = $request->has('validated') ? true : false;
+        $settings->active = $request->has('active') ? true : false;
+
         $settings->save();
         //  Config::set('Hooks.platform', $request->input('platform'));
 
