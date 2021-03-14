@@ -25,4 +25,13 @@ class InvoiceSettings extends Settings
     {
         return 'invoice';
     }
+
+    public function getLogo(){
+
+        if(isset($this->logo)){
+
+           return getImagePath().$this->logo;
+        }
+        return "https://cdn3.geckoandfly.com/wp-content/uploads/2019/06/530-invoice-templates.jpg";
+    }
 }

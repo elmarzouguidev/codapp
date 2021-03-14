@@ -26,10 +26,10 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="card p-3">
-                         
+
                             <div class="d-flex align-items-center px-2">
-                                <img src="{{getImagePath().$invoice->logo}}" alt="Photo by Nathan Guerrero" class="rounded">
-        
+                                <img src="{{$invoice->getLogo()}}" alt="Photo by Nathan Guerrero" class="rounded">
+
                             </div>
                         </div>
                     </div>

@@ -34,6 +34,22 @@
         }
     })
 
+    window.addEventListener('confirmAction', event => {
+
+       swal({
+           title : event.detail.title,
+           text : event.detail.text,
+           icon : event.detail.type,
+           buttons : true,
+           dangerMode : true
+       })
+       .then((willDelete)=>{
+           if(willDelete){
+               window.livewire.emit('deleteLead',event.detail.id);
+           }
+       });
+    });
+
 </script>
 
 

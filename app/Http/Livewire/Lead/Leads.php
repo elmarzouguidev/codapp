@@ -22,6 +22,8 @@ class Leads extends Component
 {
     use WithPagination, Permission;
 
+    protected $listeners = ['deleteLead'];
+
     public $isUpdate = false;
     public $isGroup = false;
     public $isModerator = false;
@@ -197,6 +199,20 @@ class Leads extends Component
      * @param LeadService $delete
      * @param $id
      */
+
+    public function deleteConfirm($id)
+    {
+        $this->dispatchBrowserEvent('confirmAction', [
+
+          'type'=>'warning',
+
+          'title'=>'Are you sure ?',
+
+          'text'=>'',
+
+          'id'=>$id
+        ]);
+    }
     public function deleteLead(LeadService $delete, $id)
     {
         if ($id) {
@@ -226,7 +242,7 @@ class Leads extends Component
     }
 
     /**
-     
+
      */
     public function cancel(): void
     {

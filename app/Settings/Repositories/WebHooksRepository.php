@@ -14,7 +14,6 @@ namespace App\Settings\Repositories;
 use App\Http\Requests\Settings\Hooks\HooksRequest;
 
 use App\Settings\WebHooksSettings;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 use Jackiedo\DotenvEditor\Facades\DotenvEditor;
 class WebHooksRepository
@@ -56,7 +55,6 @@ class WebHooksRepository
         $settings->active = $request->has('active') ? true : false;
 
         $settings->save();
-        //  Config::set('Hooks.platform', $request->input('platform'));
 
     }
 

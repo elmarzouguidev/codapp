@@ -120,7 +120,7 @@
                                             {{__('action.edit')}}
                                             </a>
                                         </td>
-                                        <td><button wire:click="deleteLead({{ $lead->id }})"
+                                        <td><button wire:click="deleteConfirm({{ $lead->id }})"
                                                 class="btn btn-danger btn-sm"><i class="icon-trash"></i></button></td>
                                     </tr>
                                 @endforeach
